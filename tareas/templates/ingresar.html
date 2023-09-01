@@ -1,0 +1,7 @@
+<form action="/ingresar/" method="post">
+    {% csrf_token %}
+    {{formularioLogin.as_p}}
+    <button>
+        Ingresar
+    </button>
+</form>
