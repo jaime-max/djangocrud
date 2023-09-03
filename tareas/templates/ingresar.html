@@ -1,7 +1,14 @@
+<h1>Ingresar</h1>
 <form action="/ingresar/" method="post">
     {% csrf_token %}
     {{formularioLogin.as_p}}
-    <button>
-        Ingresar
-    </button>
+    <div class="error-message">
+        <p>{{error}}</p>
+    </div>
+    <div>
+        <button>
+            Ingresar
+        </button>
+    </div>
+    
 </form>

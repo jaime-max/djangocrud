@@ -1,3 +1,17 @@
 db.sqlite3
 env
 __pycache__
+# Archivos de configuración de MySQL (si los tienes)
+/mysql.cnf
+/mysql.conf
+
+# Archivos de respaldo de MySQL (generados por herramientas de respaldo)
+*.sql
+*.dump
+
+# Archivo de registro de consultas de MySQL (opcional)
+*.log
+
+# Directorio de almacenamiento de datos de MySQL (si lo tienes)
+/mysql_data/
+
