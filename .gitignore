@@ -14,4 +14,4 @@ __pycache__
 
 # Directorio de almacenamiento de datos de MySQL (si lo tienes)
 /mysql_data/
-
+djangocrud/settings.py
