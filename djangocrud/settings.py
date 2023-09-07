@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangocrud',
         'USER': 'jaime',
         'PASSWORD': 'jaime1234',
