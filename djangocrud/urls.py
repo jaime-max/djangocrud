@@ -21,6 +21,10 @@ from tareas import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('ingresar/', views.ingresar, name='ingresar'),
+    path('registrar/', views.registrar, name='registrar'),
     path('tareas/', views.tareas, name='tareas'),
+    path('tareas/crear/', views.creartareas, name='creartareas'),
+    path('tareas/<int:tarea_id>/', views.detalletareas, name='tareasdetalle'),
+    path('cerrarsesion/', views.cerrarSesion, name='cerrarsesion'),
+    path('iniciarsesion/', views.iniciarsesion, name='iniciarsesion'),
 ]

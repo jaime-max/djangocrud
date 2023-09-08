@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+{% block content %}
+<h1>Crear Tareas</h1>
+<form action="/tareas/crear/" method="POST">
+    {% csrf_token %}
+    {{formulario.as_p}}
+    <div class="error-message">
+        <p>{{error}}</p>
+    </div>
+    <div>
+        <button>
+            Guardar
+        </button>
+    </div>
+</form>
+
+{% endblock %}

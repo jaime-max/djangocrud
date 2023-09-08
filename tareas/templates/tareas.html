@@ -1,1 +1,21 @@
+{% extends 'master.html' %}
+{% block content %}
+
 <h1>Tareas</h1>
+<ul>
+    {% for tareas in lista_tareas %}
+    <li>
+        <a href="{% url 'tareasdetalle' tareas.id %}">
+            {% if tareas.importante %}
+            <strong>{{tareas.titulo}}</strong>
+            {% else %}
+            {{tareas.titulo}}
+            {% endif %}
+            <p>{{tareas.descripcion}}</p>
+            <p>{{tareas.user.username}}</p>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

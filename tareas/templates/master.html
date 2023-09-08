@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicacion Django</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Inicio</a>
+            </li>
+            
+            {% if user.is_authenticated %}
+            <li>
+                <a href="/tareas">Tareas</a>
+            </li>
+            <li>
+                <a href="/tareas/crear">Crear Tareas</a>
+            </li>
+            <li>
+                <a href="/cerrarsesion">Cerrar Sesion</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="/iniciarsesion">Iniciar Sesion</a>
+            </li>
+            <li>
+                <a href="/registrar">Registrase</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

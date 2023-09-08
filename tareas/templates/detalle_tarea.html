@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+{% block content %}
+
+<h1>{{tareas.titulo}}</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{formulario.as_p}}
+    <div>
+        <button>
+            Editar
+        </button>
+    </div>
+</form>
+{% endblock %}
