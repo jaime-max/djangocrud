@@ -6,10 +6,31 @@
 <form method="POST">
     {% csrf_token %}
     {{formulario.as_p}}
+    <div class="error-message">
+        <p>{{error}}</p>
+    </div>
     <div>
         <button>
             Editar
         </button>
     </div>
 </form>
+<form action="{% url 'tareacompletada' tareas.id %}" method="POST">
+    {% csrf_token %}
+    <div>
+        <button>
+            Completada
+        </button>
+    </div>
+</form>
+<form action="{% url 'tareaeliminada' tareas.id %}" method="POST">
+    {% csrf_token %}
+    <div>
+        <button>
+            Eliminar
+        </button>
+    </div>
+</form>
+
+
 {% endblock %}

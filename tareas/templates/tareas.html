@@ -1,7 +1,7 @@
 {% extends 'master.html' %}
 {% block content %}
 
-<h1>Tareas</h1>
+<h1>Tareas Pendientes</h1>
 <ul>
     {% for tareas in lista_tareas %}
     <li>
@@ -13,6 +13,7 @@
             {% endif %}
             <p>{{tareas.descripcion}}</p>
             <p>{{tareas.user.username}}</p>
+            <p>{{tareas.diacompletado|date:'M j y:i'}}</p>
         </a>
     </li>
     {% endfor %}

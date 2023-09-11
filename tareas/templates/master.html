@@ -9,25 +9,28 @@
     <nav>
         <ul>
             <li>
-                <a href="/">Inicio</a>
+                <a href="{% url 'home' %}">Inicio</a>
             </li>
             
             {% if user.is_authenticated %}
             <li>
-                <a href="/tareas">Tareas</a>
+                <a href="{% url 'tareas' %}">Tareas Pendientes</a>
             </li>
             <li>
-                <a href="/tareas/crear">Crear Tareas</a>
+                <a href="{% url 'listareascompletas' %}">Tareas Completadas</a>
             </li>
             <li>
-                <a href="/cerrarsesion">Cerrar Sesion</a>
+                <a href="{% url 'creartareas' %}">Crear Tareas</a>
+            </li>
+            <li>
+                <a href="{% url 'cerrarsesion' %}">Cerrar Sesion</a>
             </li>
             {% else %}
             <li>
-                <a href="/iniciarsesion">Iniciar Sesion</a>
+                <a href="{% url 'iniciarsesion' %}">Iniciar Sesion</a>
             </li>
             <li>
-                <a href="/registrar">Registrase</a>
+                <a href="{% url 'registrar' %}">Registrase</a>
             </li>
             {% endif %}
         </ul>

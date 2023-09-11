@@ -5,7 +5,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import FormularioTareas
 from .models import Tareas
-
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -40,7 +41,7 @@ def registrar(request):
             'error': 'Claves Incorrectas'
         })
 
-
+@login_required
 def tareas(request):
     listareas = Tareas.objects.filter(
         user=request.user, diacompletado__isnull=True)
@@ -48,7 +49,15 @@ def tareas(request):
         'lista_tareas': listareas
     })
 
+@login_required
+def listareascompletas(request):
+    listareas = Tareas.objects.filter(
+        user=request.user, diacompletado__isnull=False).order_by('-diacompletado')
+    return render(request, 'tareas.html', {
+        'lista_tareas': listareas
+    })
 
+@login_required
 def creartareas(request):
     if request.method == 'GET':
         return render(request, 'crear_tareas.html', {
@@ -69,11 +78,11 @@ def creartareas(request):
                 'error': 'Introdusca datos validos'
             })
 
-
+@login_required
 def detalletareas(request, tarea_id):
     # print(tarea_id)
     if request.method == 'GET':
-        tarea = get_object_or_404(Tareas, pk=tarea_id)
+        tarea = get_object_or_404(Tareas,pk=tarea_id, user = request.user)
         formulario = FormularioTareas(instance=tarea)
         return render(request, 'detalle_tarea.html', {
             'tareas': tarea,
@@ -81,10 +90,36 @@ def detalletareas(request, tarea_id):
         })
     else:
         #print(request.POST)
-        tarea = get_object_or_404(Tareas,pk=tarea_id)
-        pass
+        try:
+            tarea = get_object_or_404(Tareas,pk=tarea_id, user = request.user)
+            formulario = FormularioTareas(request.POST, instance=tarea)
+            formulario.save()
+            return redirect('tareas')
+        except ValueError:
+            return render(request,'detalle_tarea.html',{
+                'tareas': tarea,
+                'formulario': formulario,
+                'error':'Error al actualizar tareas'
+            })
 
+@login_required
+def tareacompletada(request, tarea_id):
+    tarea = get_object_or_404(Tareas, pk= tarea_id, user = request.user)
+    if request.method == 'POST':
+        tarea.diacompletado = timezone.now()
+        tarea.save()
+        #redirecciona a la vista de tareas con redirect
+        return redirect('tareas')
 
+@login_required
+def tareaeliminada(request, tarea_id):
+    tarea = get_object_or_404(Tareas, pk= tarea_id, user = request.user)
+    if request.method == 'POST':
+        tarea.delete()
+        #redirecciona a la vista de tareas con redirect
+        return redirect('tareas')
+
+@login_required
 def cerrarSesion(request):
     logout(request)
     return redirect('home')
