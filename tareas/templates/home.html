@@ -1,6 +1,23 @@
 {% extends 'master.html' %}
 {% block content %}
 
-<h1>Inicio</h1>
-
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center">TaskHub</h1>
+        <p>En el ajetreado mundo actual, mantenerse al tanto de todas las responsabilidades y
+            compromisos puede ser un desafío abrumador. Ya sea que estés gestionando proyectos
+            en el trabajo, compromisos sociales o tareas diarias en casa, la organización es la
+            clave para mantener el equilibrio. Es por eso que te presentamos esta aplicacion web
+            ,tu compañero confiable para agendar tareas y simplificar
+            tu vida.</p>
+        <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'iniciarsesion' %}">
+                Iniciar sesion
+            </a>
+            <a class="btn btn-primary" href="{% url 'registrar' %}">
+                Registrarse
+            </a>
+        </div>
+    </section>
+</main>
 {% endblock %}

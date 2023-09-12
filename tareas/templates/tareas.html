@@ -1,22 +1,28 @@
 {% extends 'master.html' %}
 {% block content %}
 
-<h1>Tareas Pendientes</h1>
-<ul>
-    {% for tareas in lista_tareas %}
-    <li>
-        <a href="{% url 'tareasdetalle' tareas.id %}">
-            {% if tareas.importante %}
-            <strong>{{tareas.titulo}}</strong>
-            {% else %}
-            {{tareas.titulo}}
-            {% endif %}
-            <p>{{tareas.descripcion}}</p>
-            <p>{{tareas.user.username}}</p>
-            <p>{{tareas.diacompletado|date:'M j y:i'}}</p>
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">Tareas</h1>
+            <ul class="list-group">
+                {% for tareas in lista_tareas %}
+                <a class="list-group-item" href="{% url 'tareasdetalle' tareas.id %}">
+                    <header class="d-flex justify-content-between">
+                        {% if tareas.importante %}
+                        <h1 class="fw-bold text-success">{{tareas.titulo}}</h1>
+                        {% else %}
+                        <h1 class="fw-bold">{{tareas.titulo}}</h1>
+                        {% endif %}
+                        <p>{{tareas.user.username}}</p>
+                    </header>
+                    <p>{{tareas.descripcion}}</p>
+                    <p>{{tareas.diacompletado|date:'M j y:i'}}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
 
 {% endblock %}

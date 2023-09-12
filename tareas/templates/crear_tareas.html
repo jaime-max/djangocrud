@@ -1,17 +1,20 @@
 {% extends 'master.html' %}
 {% block content %}
-<h1>Crear Tareas</h1>
-<form action="/tareas/crear/" method="POST">
-    {% csrf_token %}
-    {{formulario.as_p}}
-    <div class="error-message">
-        <p>{{error}}</p>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <form action="/tareas/crear/" method="POST" class="card card-body">
+                <h1>Crear Tareas</h1>
+                {% csrf_token %}
+                {{formulario.as_p}}
+                <p>{{error}}</p>
+                <button class="btn btn-success">
+                    Guardar
+                </button>
+            </form>
+        </div>
     </div>
-    <div>
-        <button>
-            Guardar
-        </button>
-    </div>
-</form>
+</main>
 
 {% endblock %}

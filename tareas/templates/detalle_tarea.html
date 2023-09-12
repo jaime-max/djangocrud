@@ -1,36 +1,33 @@
 {% extends 'master.html' %}
 {% block content %}
 
-<h1>{{tareas.titulo}}</h1>
-
-<form method="POST">
-    {% csrf_token %}
-    {{formulario.as_p}}
-    <div class="error-message">
-        <p>{{error}}</p>
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <h1 class="text-secondary">{{tareas.titulo}}</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{formulario.as_p}}
+                {{error}}
+                <button class="btn btn-warning">
+                    Editar
+                </button>
+            </form>
+            <div class="mt-5 d-flex">
+                <form action="{% url 'tareacompletada' tareas.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-success">
+                        Completada
+                    </button>
+                </form>
+                <form action="{% url 'tareaeliminada' tareas.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div>
-        <button>
-            Editar
-        </button>
-    </div>
-</form>
-<form action="{% url 'tareacompletada' tareas.id %}" method="POST">
-    {% csrf_token %}
-    <div>
-        <button>
-            Completada
-        </button>
-    </div>
-</form>
-<form action="{% url 'tareaeliminada' tareas.id %}" method="POST">
-    {% csrf_token %}
-    <div>
-        <button>
-            Eliminar
-        </button>
-    </div>
-</form>
-
-
+</main>
 {% endblock %}
